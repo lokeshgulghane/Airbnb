@@ -80,6 +80,7 @@ body{
     border-radius: 1rem !important;
     width: 100% !important;
     object-fit: cover !important;
+    height: auto;
 }
 
 .card-body{
@@ -129,4 +130,11 @@ body{
 .show-card{
     padding-left: 0;
     padding-right: 0;
+}
+
+
+/* Map */
+#map { 
+    height: 400px;
+    width: 80vh;
 }

@@ -29,7 +29,7 @@ module.exports.renderLoginForm = (req,res) => {
 
 module.exports.login = async(req,res) => {
     req.flash("success", "Welcome back to Wanderlust!");
-    let redirectUrl = res.locals.redirectUrl || "/listings";
+    let redirectUrl = res.locals.redirectUrl || "/listings";  //direct login jar kela tar te listings var zanar
     res.redirect(redirectUrl);
 };
 

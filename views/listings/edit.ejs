@@ -1,39 +1,46 @@
 <% layout("/layouts/boilerplate") %>
-    <div class="row mt-3">
-      <div class="col-8 offset-2">
-        <h3>Edit your Listing</h3>
+    <div class="container my-5">
+      <div class="card shadow-lg border-0 rounded-4 p-4 mx-auto" style="max-width: 800px;">
+        <h3 class="fw-bold mb-4 text-center" style="color: #ff385c;">
+          ✏️ Edit Your Listing
+        </h3>
         <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+          <!-- Title -->
           <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label fw-semibold">Title</label>
             <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required/>
             <div class="valid-feedback">Title looks good!</div>
           </div>
           
+          <!-- Description -->
           <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label fw-semibold">Description</label>
             <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
             <div class="invalid-feedback">Please enter a short Description</div>
           </div>
           
-          <div class="mb-3">
-            original listing image </br>
+          <!-- Original Image -->
+          <div class="mb-3 text-center">
+            <label class="form-label fw-semibold d-block">Current Image</label>
             <img src="<%= originalImageUrl %>" style="width: 300px; height: auto;">
           </div>
 
+          <!-- Upload New Image -->
           <div class="mb-3">
-            <label for="image" class="form-label">Upload New Image</label>
+            <label for="image" class="form-label fw-semibold">Upload New Image</label>
             <input name="listing[image]" type="file" class="form-control" />
           </div>
           
+          <!-- Price, Country, Location -->
           <div class="row">
             <div class="mb-3 col-md-4">
-              <label for="price" class="form-label">Price</label>
+              <label for="price" class="form-label fw-semibold">Price (₹/night)</label>
               <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required/>
               <div class="invalid-feedback">Please enter a valid Price</div>
             </div>
             
             <div class="mb-3 col-md-8">
-              <label for="country" class="form-label">Country</label>
+              <label for="country" class="form-label fw-semibold">Country</label>
               <input
               name="listing[country]"
               value="<%= listing.country %>"
@@ -47,7 +54,7 @@
           
           
           <div class="mb-3">
-            <label for="location" class="form-label">Location</label>
+            <label for="location" class="form-label fw-semibold">Location</label>
             <input
             name="listing[location]"
             value="<%= listing.location %>"
@@ -58,8 +65,39 @@
             <div class="invalid-feedback">location should be valid</div>
           </div>
           
-          <button class="btn btn-dark edit-btn mt-3">Edit</button>
+          <!-- Buttons -->
+          <div class="d-flex justify-content-center mt-4 gap-3">
+            <a 
+              href="/listings/<%= listing._id %>" 
+              class="btn btn-outline-secondary px-4 py-2 rounded-pill"
+            >
+              Cancel
+            </a>
+
+            <button 
+              class="btn text-white px-4 py-2 fw-semibold rounded-pill" 
+              style="background: linear-gradient(90deg, #ff385c, #ff4d6d);"
+            >
+              💾 Save Changes
+            </button>
+          </div>
         </form>
       </div>
     </div>
 
+    <script>
+      // Bootstrap form validation
+      (function () {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+    </script>

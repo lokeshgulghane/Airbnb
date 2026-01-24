@@ -21,6 +21,7 @@ const User = require("./models/user.js");
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const bookingRoutes = require("./routes/bookings");
 
 
 const dbUrl = process.env.ATLASDB_URL;
@@ -74,19 +75,20 @@ const sessionOption = {
 
 
 
-app.use(session(sessionOption));
-app.use(flash());
+app.use(session(sessionOption));//he session support la enable karte
+app.use(flash()); //he flash la enable karte
 
 
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+app.use(passport.initialize());// passport initialize karte
+app.use(passport.session());   //pratyank request sathi login karalagnar nahi same session adhe 
+passport.use(new LocalStrategy(User.authenticate()));//local la vaprta yeta ala pahije mhanun
 
+// use static serialize and deserialize of model for passport session support
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req,res,next) => {
-    res.locals.success = req.flash("success");
+    res.locals.success = req.flash("success"); //local render karasathi used karte
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
     next();
@@ -106,7 +108,7 @@ app.use((req,res,next) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
-
+app.use("/", bookingRoutes);
 
 
 app.all('/{*any}',(req,res,next) => {

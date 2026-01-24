@@ -1,4 +1,4 @@
-<% layout("/layouts/boilerplate") %>
+<!-- <% layout("/layouts/boilerplate") %>
     <div class="row mt-3">
       <div class="col-8 offset-2">
         <h3>Create a New Listing</h3>
@@ -61,7 +61,137 @@
           
         </form>
     </div>
+  </div> -->
+
+
+
+  <% layout("layouts/boilerplate") -%>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card shadow-lg border-0 rounded-4">
+          <div class="card-body p-5">
+            <h2 class="text-center mb-4 fw-bold" style="color: #ff385c;">
+              🏠 Create a New Listing
+            </h2>
+            <p class="text-center text-muted mb-4">
+              Fill in the details below to add your property to Wanderlust.
+            </p>
+  
+            <form
+              method="POST"
+              action="/listings"
+              enctype="multipart/form-data"
+              novalidate
+              class="needs-validation"
+            >
+              <!-- Title -->
+              <div class="mb-3">
+                <label for="title" class="form-label fw-semibold">Title</label>
+                <input
+                  name="listing[title]"
+                  placeholder="Enter property title"
+                  type="text"
+                  class="form-control form-control-lg rounded-3"
+                  required
+                />
+                <div class="invalid-feedback">Please enter a title</div>
+              </div>
+  
+              <!-- Description -->
+              <div class="mb-3">
+                <label for="description" class="form-label fw-semibold"
+                  >Description</label
+                >
+                <textarea
+                  name="listing[description]"
+                  placeholder="Describe your listing..."
+                  class="form-control rounded-3"
+                  rows="4"
+                  required
+                ></textarea>
+                <div class="invalid-feedback">Please enter a description</div>
+              </div>
+  
+              <!-- Image Upload -->
+              <div class="mb-3">
+                <label for="image" class="form-label">Upload Listing Image</label>
+                <input
+                name="listing[image]"
+                type="file"
+                class="form-control"
+                required
+                />
+              </div>
+  
+              <!-- Price + Country -->
+              <div class="row">
+                <div class="mb-3 col-md-4">
+                  <label for="price" class="form-label">Price</label>
+                  <input name="listing[price]" placeholder="enter price" class="form-control" required/>
+                  <div class="invalid-feedback">Please enter a valid Price</div>
+                </div>
+                
+                <div class="mb-3 col-md-8">
+                  <label for="country" class="form-label">Country</label>
+                  <input name="listing[country]" placeholder="India" type="text" class="form-control" required/>
+                  <div class="invalid-feedback">Country name should be valid</div>
+                </div>
+              </div>
+  
+              <!-- Location -->
+              <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input
+                name="listing[location]"
+                placeholder="enter location"
+                type="text"
+                class="form-control"
+                required
+                />
+                <div class="invalid-feedback">location should be valid</div>
+              </div>
+  
+              <!-- Submit Button -->
+              <div class="text-center mt-4">
+                <button
+                  class="btn btn-lg px-5 py-2 text-white fw-semibold"
+                  style="
+                    background-color: #ff385c;
+                    border: none;
+                    border-radius: 50px;
+                    transition: 0.3s;
+                  "
+                  onmouseover="this.style.backgroundColor='#e02e50'"
+                  onmouseout="this.style.backgroundColor='#ff385c'"
+                >
+                  ➕ Add Listing
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-
-
+  
+  <style>
+    body {
+      background-color: #fff9f9;
+    }
+  
+    .card {
+      background-color: #ffffff;
+    }
+  
+    label {
+      color: #444;
+    }
+  
+    input::placeholder,
+    textarea::placeholder {
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+  </style>
