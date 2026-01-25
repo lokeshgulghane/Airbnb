@@ -25,7 +25,7 @@ body{
 
 /* footer */
 .f-info-brand-links{
-    width: 50%;
+    /* width: 50%; */
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -35,6 +35,11 @@ body{
     text-decoration: none;
     color: #222222;
     padding-left: 1rem;
+}
+
+.f-info-links{
+    display: flex;
+    justify-content: center;
 }
 
 /* .f-info-links a:hover{
@@ -69,6 +74,52 @@ body{
     padding-left: 5rem;
     padding-right: 5rem;
 }
+
+@media (max-width: 900px) {
+
+    .f-info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 2rem;
+        gap: 20px;
+        height: auto;
+        align-items: stretch;
+    }
+
+    /* Row 1: Brand + Icons in same row */
+    .top-row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .f-info-brand-links {
+        justify-content: center;
+    }
+
+    .f-info-socials {
+        justify-content: center;
+        display: flex;
+        gap: 12px;
+    }
+
+    /* Links row below */
+    .f-info-links {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .f-info-links a {
+        padding-left: 0;
+        display: block;
+    }
+}
+
 
 /* Cards */
 .listing-card{
