@@ -18,38 +18,105 @@
 
   .search-inp {
     border-radius: 25px;
-    padding: 0.5rem 1.5rem 0.5rem 3rem;
+  }
+
+  .p-4{
+    padding: 1rem !important;
+  }
+
+  .hamburger:hover{
+    background-color: black;
+    color: #fff;
+  }
+  
+  /* 👇 Added only for mobile dropdown */
+  .mobile-menu {
+    width: 280px;
+    border-radius: 16px;
   }
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-        <span class="navbar-toggler-icon"></span>
+  <div class="container-fluid">
+    
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+
+    <!-- 🔹 Mobile Hamburger (ONLY visible on small screens) -->
+    <div class="dropdown d-md-none ms-auto">
+      <button
+        class="btn btn-light border hamburger"
+        type="button"
+        data-bs-toggle="dropdown"
+      >
+        <i class="fa-solid fa-bars"></i>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/listings">Explore</a>
-        </div>
 
-        <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search" action="/listings" method="GET">
-            <input class="form-control me-2 search-inp" type="search" placeholder="Search destination" name="search"/>
-            <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-          </form>
-        </div>
+      <!-- 🔹 Mobile Dropdown Menu -->
+      <div class="dropdown-menu dropdown-menu-end p-4 shadow mobile-menu">
 
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/listings/new">Wanderlust your home</a>
-          <% if(!currUser) { %>
-            <a class="nav-link" href="/signup"><b>Sign up</b></a>
-            <a class="nav-link" href="/login"><b>Log in</b></a>
-          <% } %>
-          <% if(currUser) { %>
-            <a class="nav-link" href="/logout"><b>Log out</b></a>
-          <% } %>
-        </div>
+        <a class="dropdown-item fw-semibold" href="/listings">
+          Explore
+        </a>
+
+        <form class="d-flex mb-3 mt-2" role="search" action="/listings" method="GET">
+          <input
+            class="form-control me-2 search-inp"
+            type="search"
+            placeholder="Search destination"
+            name="search"
+          />
+          <button class="btn search-btn" type="submit">
+            Search
+          </button>
+        </form>
+
+        <a class="dropdown-item fw-semibold" href="/listings/new">
+          Wanderlust your home
+        </a>
+
+        <% if(!currUser) { %>
+          <a class="dropdown-item" href="/signup"><b>Sign up</b></a>
+          <a class="dropdown-item" href="/login"><b>Log in</b></a>
+        <% } %>
+
+        <% if(currUser) { %>
+          <a class="dropdown-item" href="/logout"><b>Log out</b></a>
+        <% } %>
+
       </div>
     </div>
+
+    <!-- 🔹 Desktop Navbar (YOUR ORIGINAL CODE — untouched) -->
+    <div class="collapse navbar-collapse d-none d-md-flex" id="navbarNavAltMarkup">
+      
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search" action="/listings" method="GET">
+          <input class="form-control me-2 search-inp" type="search" placeholder="Search destination" name="search"/>
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Wanderlust your home</a>
+
+        <% if(!currUser) { %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+
+        <% if(currUser) { %>
+          <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } %>
+      </div>
+
+    </div>
+  </div>
 </nav>

@@ -104,8 +104,102 @@
     color: #ffc107;
     font-size: 0.9rem;
   }
+
+  #filters{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .filter{
+    text-align: center;
+    margin-right: 1.5rem;
+    margin-top: 1rem;
+    opacity: 0.7;
+  }
+
+  .filter p{
+    font-size: 1rem;
+  }
+
+  .filter:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .tax-info{
+    display: none;
+  }
+
+  .tax-toggle{
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.25rem;
+    padding: 1rem;
+    margin-left: 3rem;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Hide filters on screens 767px and below */
+@media (max-width: 767px) {
+  .filter {
+    display: none;
+  }
+}
+
+
 </style>
 
+<div id="filters">
+  <div class="filter">
+    <div><i class="fa-solid fa-fire"></i></div>
+    <p>Trending</p> 
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-bed"></i></div>
+    <p>Rooms</p> 
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-mountain-city"></i></div>
+    <p>Iconic cities</p> 
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-mountain"></i></div>
+    <p>Mountains</p> 
+  </div>
+  <div class="filter">
+    <div><i class="fa-brands fa-fort-awesome"></i></div>
+    <p>Castles</p> 
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-person-swimming"></i></div>
+    <p>Amazing Pools</p> 
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-campground"></i></div>
+    <p>Camping</p> 
+  </div>
+  <div class="filter">
+    <div><i class="fa-regular fa-snowflake"></i></div>
+    <p>Arctic</p> 
+  </div>
+  <div class="filter">
+    <div><i class="fa-solid fa-igloo"></i></div>
+    <p>Domes</p> 
+  </div>
+
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+      <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+    </div>
+  </div>
+  
+</div>
+
+<hr>
 
 <!-- Header -->
 <!-- <div class="page-header">
@@ -117,7 +211,7 @@
       <h3>Search Results for "<%= search %>"</h3>
       <a href="/listings" class="btn-view-all" style="text-decoration: none">View All</a>
   <% } else { %>
-      <h3>Popular Listings</h3>
+      <h3>Popular homes</h3>
   <% } %>
 
 </div>
@@ -139,7 +233,10 @@
 
         <div class="card-body">
           <h6 class="fw-semibold text-truncate"><%= listing.title %></h6>
-          <p class="mb-1 price"><%= listing.price %> Rs / night</p>
+          <p class="mb-1 price">
+            &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+            <i class="tax-info" style="color: black;"> &nbsp;&nbsp;+18% GST</i>
+          </p>
           <p class="mb-0 text-muted small">
             <i class="fa-solid fa-location-dot me-1"></i><%= listing.country %>
           </p>
@@ -150,3 +247,19 @@
   <% } %>
 
 </div>
+
+
+<script>
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click", () => {
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for(info of taxInfo){
+      if(info.style.display != "inline"){
+        info.style.display = "inline";
+      }
+      else{
+        info.style.display = "none";
+      } 
+    }
+  });
+</script>
