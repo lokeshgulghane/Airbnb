@@ -137,11 +137,14 @@
                 <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
                 <p class="card-text"><%= review.comment %></p>
               
-                <form class="mb-3" method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                  <% if(currUser && review.author._id.equals(currUser._id)) { %>
-                    <button class="btn btn-sm btn-dark">Delete</button>
-                  <% } %> 
-                </form>
+                <% if(currUser && review.author._id.equals(currUser._id)) { %>
+                  <div class="d-flex gap-2">
+                    <a href="/listings/<%= listing._id %>/reviews/<%= review._id %>/edit" class="btn btn-sm btn-dark">Edit</a>
+                    <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                      <button type="submit" class="btn btn-sm btn-outline-dark">Delete</button>
+                    </form>
+                  </div>
+                <% } %>
               </div>
             </div>
           <% } %>

@@ -1,0 +1,26 @@
+<div id="wanderlust-chatbot">
+    <div class="chatbot-panel" id="chatbot-panel">
+        <div class="chatbot-header">
+            <i class="fa-solid fa-compass fa-lg"></i>
+            <div>
+                <h6>Wanderlust Assistant</h6>
+                <small>Find your best stay</small>
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages"></div>
+        <div class="chatbot-suggestions">
+            <button type="button" data-question="Which is the best stay?">Best stay</button>
+            <button type="button" data-question="What is the cheapest stay?">Cheapest</button>
+            <button type="button" data-question="Best stay in India">In India</button>
+        </div>
+        <form class="chatbot-input-row" id="chatbot-form">
+            <input type="text" id="chatbot-input" placeholder="Ask about stays..." autocomplete="off" />
+            <button type="submit" id="chatbot-send" aria-label="Send">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+    <button type="button" class="chatbot-toggle" id="chatbot-toggle" aria-label="Open chat">
+        <i class="fa-solid fa-comments"></i>
+    </button>
+</div>

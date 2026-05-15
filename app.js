@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV != "production"){
+if(process.env.NODE_ENV !== "production"){
     require("dotenv").config();
 }
 
@@ -22,6 +22,7 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const bookingRoutes = require("./routes/bookings");
+const chatbotRouter = require("./routes/chatbot.js");
 
 
 const dbUrl = process.env.ATLASDB_URL;
@@ -110,6 +111,7 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 app.use("/", bookingRoutes);
+app.use("/api/chatbot", chatbotRouter);
 
 
 app.all('/{*any}',(req,res,next) => {
